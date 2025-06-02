@@ -1,0 +1,1686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Starlink Engineering - Comprehensive Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+            scroll-behavior: smooth;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .section {
+            padding: 60px 0; /* Reduced general section padding */
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        .section > .container > .section-title:first-child,
+        .section > .container > .content-block > .section-title:first-child {
+            margin-top: 0; 
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #007a3d;
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: #555;
+            font-size: 1.1rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: #00994d;
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+        
+        /* Header Styles */
+        .fixed-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+        
+        .top-bar {
+            background: linear-gradient(90deg, #007a3d 0%, #00994d 100%);
+            color: #fff;
+            padding: 8px 0;
+            font-size: 0.85em;
+        }
+        
+        .top-bar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .contact-info span { 
+            margin-right: 20px; 
+        }
+        
+        .contact-info span i { 
+            margin-right: 5px; 
+        }
+        
+        .social-icons-top a {
+            color: #fff;
+            margin-left: 15px;
+            font-size: 1em;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons-top a:hover { 
+            transform: translateY(-2px); 
+            color: #cceeff;
+        }
+        
+        .main-nav {
+            background-color: #fff;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .logo img { 
+            height: 50px; 
+            display: block; 
+        }
+        
+        .nav-links {
+            list-style: none; 
+            padding: 0; 
+            margin: 0;
+            display: flex; 
+            align-items: center;
+        }
+        
+        .nav-links li { 
+            margin-left: 25px; 
+            position: relative; 
+        }
+        
+        .nav-links li:first-child { 
+            margin-left: 0; 
+        }
+        
+        .nav-links > li > a {
+            text-decoration: none; 
+            color: #333;
+            font-weight: 600; 
+            font-size: 0.95em;
+            padding: 8px 0; 
+            display: flex; 
+            align-items: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links > li > a:hover, 
+        .nav-links > li > a.active { 
+            color: #00994d; 
+        }
+        
+        .nav-links > li > a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #00994d;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links > li > a:hover::after {
+            width: 100%;
+        }
+        
+        .submenu-arrow { 
+            font-size: 0.7em; 
+            margin-left: 5px; 
+            transition: transform 0.3s ease; 
+        }
+        
+        .submenu {
+            display: none; 
+            position: absolute;
+            top: 100%; 
+            left: 0;
+            background-color: #fff; 
+            border: 1px solid #eee;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            list-style: none; 
+            padding: 10px 0; 
+            margin: 0;
+            min-width: 240px; 
+            z-index: 1001;
+            border-radius: 5px;
+        }
+        
+        .nav-links li:hover > .submenu { 
+            display: block; 
+        }
+        
+        .submenu li { 
+            margin: 0; 
+            width: 100%; 
+        }
+        
+        .submenu li a {
+            display: block; 
+            padding: 10px 20px;
+            text-decoration: none; 
+            color: #333;
+            font-size: 0.9em; 
+            transition: all 0.2s ease;
+        }
+        
+        .submenu li a:hover { 
+            background-color: #f0f9f0; 
+            color: #007a3d;
+            padding-left: 25px;
+        }
+        
+        .mobile-menu-icon {
+            display: none; 
+            font-size: 1.5em;
+            color: #333; 
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu-icon:hover {
+            color: #00994d;
+        }
+        
+        /* Services Section */
+        .services-section {
+            background-color: #f0f9f0;
+            padding-top: 50px; 
+            padding-bottom: 50px;
+            margin-top: 105px; 
+        }
+        
+        .services-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            justify-content: center;
+        }
+        
+        .service-card {
+            flex: 1;
+            min-width: 250px;
+            max-width: 300px;
+            height: 380px;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            transition: all 0.4s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        
+        .service-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.5s ease;
+        }
+        
+        .service-card:hover .service-image {
+            transform: scale(1.05);
+        }
+        
+        .service-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px 20px;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            height: 100%;
+        }
+        
+        .service-title {
+            margin: 0;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .service-subtitle {
+            margin: 5px 0 15px;
+            font-size: 0.95rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        .service-btn {
+            display: inline-block;
+            background-color: #00994d;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            width: fit-content;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        
+        .service-btn:hover {
+            background-color: transparent;
+            border-color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
+        
+        .service-btn i {
+            margin-left: 5px;
+            font-size: 0.8rem;
+        }
+        
+        /* Content Sections */
+        .about-section, .solar-epc-section, .telecom-section {
+            background-color: #fff;
+        }
+        
+        .content-block {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px; 
+        }
+        
+        .content-block > h3 { 
+            color: #007a3d;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            margin-top: 20px; 
+            border-left: 4px solid #00994d;
+            padding-left: 15px;
+        }
+         .content-block > h3:first-child { 
+            margin-top: 0;
+        }
+        
+        .content-block p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .highlight-box {
+            background: #f0f9f0;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 30px 0;
+            border-left: 4px solid #00994d;
+        }
+        
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        
+        .card {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .card-header {
+            background: #f0f9f0;
+            padding: 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .card-header h4 {
+            font-size: 1.3rem;
+            margin: 0;
+            color: #007a3d;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .card-header h4 i {
+            font-size: 1.5rem;
+            color: #00994d;
+        }
+        
+        .card-body {
+            padding: 20px;
+        }
+        .card-body ul {
+            list-style-type: disc;
+            margin-left:20px;
+            padding-left: 0px;
+        }
+        .card-body ul li {
+            margin-bottom: 8px;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .benefit-item:hover {
+            background: #e9f5e9; 
+            transform: translateX(5px);
+        }
+        
+        .benefit-item i { 
+            color: #00994d;
+            font-size: 1.5rem;
+            min-width: 30px;
+            margin-top: 3px;
+            text-align: center; 
+        }
+        
+        .management-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .profile-card {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .profile-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .profile-header {
+            background: linear-gradient(to right, #007a3d, #00994d);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .profile-header h3 { 
+             color: #fff;
+             font-size: 1.5rem;
+             margin-bottom: 5px;
+             border-left: none;
+             padding-left: 0;
+        }
+        
+        .profile-position {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 0px; 
+        }
+        
+        .profile-body {
+            padding: 25px;
+        }
+        
+        .profile-body p {
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+         .profile-body .highlight-box { 
+            margin-top: 20px;
+            margin-bottom: 0; 
+            padding: 15px;
+        }
+        .profile-body .highlight-box p {
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+
+        /* Contact Us Section Styles */
+        .contact-us-custom-section {
+            background-color: #fff; 
+        }
+        .contact-content-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px; 
+        }
+        .contact-form-address-area {
+            flex: 1;
+            min-width: 320px; 
+            display: flex;
+            flex-direction: column;
+            gap: 40px; 
+        }
+        .contact-form-container, .address-details-container {
+            background: #f9f9f9; 
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .contact-form-container h3, .address-details-container h3 {
+            margin-top: 0;
+            margin-bottom: 25px; 
+            color: #007a3d; 
+            font-size: 1.6rem; 
+            border-left: 4px solid #00994d;
+            padding-left: 15px;
+        }
+        .contact-form-container label {
+            display: block;
+            margin-bottom: 8px; 
+            font-weight: 600; 
+            color: #444; 
+        }
+        .contact-form-container input[type="text"],
+        .contact-form-container input[type="email"],
+        .contact-form-container textarea {
+            width: 100%;
+            padding: 12px; 
+            margin-bottom: 20px; 
+            border: 1px solid #ddd; 
+            border-radius: 5px; 
+            box-sizing: border-box;
+            font-size: 1rem; 
+            transition: border-color 0.3s ease;
+        }
+        .contact-form-container input[type="text"]:focus,
+        .contact-form-container input[type="email"]:focus,
+        .contact-form-container textarea:focus {
+            border-color: #00994d; 
+            outline: none;
+        }
+        .contact-form-container textarea {
+            resize: vertical;
+            min-height: 140px; 
+        }
+        .contact-form-container button[type="submit"] {
+            background-color: #00994d;
+            color: white;
+            padding: 12px 25px; 
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.05rem; 
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .contact-form-container button[type="submit"]:hover {
+            background-color: #007a3d;
+            transform: translateY(-2px);
+        }
+        .address-details-container p {
+            margin-bottom: 12px; 
+            font-size: 1.05rem; 
+            line-height: 1.7;
+        }
+         .address-details-container p strong {
+            color: #333; 
+        }
+        .address-details-container a {
+            color: #007a3d; 
+            text-decoration: none;
+        }
+        .address-details-container a:hover {
+            text-decoration: underline;
+        }
+        .contact-map-area {
+            flex: 1.2; 
+            min-width: 320px;
+            display: flex; 
+            align-items: center;
+            justify-content: center;
+        }
+        .contact-map-area iframe {
+            border-radius: 8px; 
+            width: 100%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        /* Footer Styles */
+        footer {
+            background: linear-gradient(to right, #003d1f, #007a3d);
+            color: #e0f7e0;
+            padding: 60px 0 0;
+        }
+        
+        .footer-container {
+            display: flex; 
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding-bottom: 40px;
+        }
+        
+        .footer-column {
+            flex: 1; 
+            min-width: 200px;
+            margin: 0 15px 30px;
+        }
+        
+        .footer-column h3 {
+            color: #FFD700; /* Bright Yellow/Gold Color */
+            font-size: 1.3em;
+            margin-bottom: 20px; 
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: #FFD700; /* Match heading color or use accent #4dffb8 */
+            border-radius: 2px;
+        }
+        
+        .footer-column p { 
+            font-size: 0.95em; 
+            line-height: 1.7; 
+            margin: 0 0 20px; 
+        }
+        
+        .footer-column ul { 
+            list-style: none; 
+            padding: 0; 
+            margin: 0; 
+        }
+        
+        .footer-column ul li { 
+            margin-bottom: 12px; 
+            font-size: 0.95em; /* Apply to li for non-link text too */
+            display: flex; /* For icon alignment if used directly in li */
+            align-items: flex-start;
+            gap: 10px;
+        }
+        .footer-column ul li i { /* Style for icons in address */
+            color: #4dffb8;
+            font-size: 1em; /* Adjust icon size if needed */
+            margin-top: 0.2em; /* Align icon with first line of text */
+            min-width: 16px; /* Ensure space for icon */
+        }
+        
+        .footer-column ul li a { 
+            color: #e0f7e0; 
+            text-decoration: none; 
+            /* font-size: 0.95em; Moved to li */
+            transition: all 0.3s ease;
+            display: inline; /* For links within text lines */
+            /* gap: 10px; Not needed if icon is sibling */
+        }
+         .footer-column ul li a.block-link { /* For links that are the whole line */
+            display: flex;
+            align-items: center;
+            gap: 10px;
+         }
+        
+        .footer-column ul li a:hover { 
+            color: #fff; 
+            /* padding-left: 5px; Not good for inline links */
+            text-decoration: underline;
+        }
+        
+        .footer-column ul li a.block-link:hover {
+            padding-left: 5px;
+            text-decoration: none;
+        }
+
+        .footer-column ul li a.block-link i { /* Icon for block links */
+            color: #4dffb8;
+            font-size: 0.8em;
+            margin-top: 0; /* Reset margin-top */
+        }
+        
+        .footer-column .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .footer-column .social-icons a {
+            color: #fff; 
+            background: rgba(255,255,255,0.15);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 1.2em;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-column .social-icons a:hover { 
+            background: rgba(255,255,255,0.25);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1); 
+            text-align: center;
+            padding: 25px 0; 
+            font-size: 0.9em; 
+            color: #b3e6b3;
+        }
+        
+        .footer-bottom p { 
+            margin: 0; 
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .nav-links {
+                display: none; 
+                flex-direction: column; 
+                width: 100%;
+                background-color: #fff; 
+                position: absolute;
+                top: 100%; 
+                left: 0; 
+                padding: 0;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                border-top: 1px solid #eee;
+            }
+            
+            .nav-links.active { 
+                display: flex; 
+            }
+            
+            .nav-links li { 
+                margin-left: 0; 
+                width: 100%; 
+            }
+            
+            .nav-links > li > a { 
+                padding: 15px 20px; 
+                justify-content: space-between; 
+                border-bottom: 1px solid #f5f5f5;
+            }
+            
+            .nav-links li:hover > .submenu { 
+                display: none; 
+            }
+            
+            .submenu {
+                position: static; 
+                display: none; 
+                width: 100%;
+                border: none; 
+                box-shadow: none; 
+                padding-left: 30px;
+                background-color: #f9f9f9;
+            }
+            
+            .submenu.submenu-active { 
+                display: block; 
+            }
+            
+            .submenu li a { 
+                padding: 12px 20px; 
+                font-size: 0.9em; 
+                white-space: normal; 
+            }
+            
+            .mobile-menu-icon { 
+                display: block; 
+            }
+            
+            .nav-links li.has-submenu > a .submenu-arrow.rotated { 
+                transform: rotate(180deg); 
+            }
+            
+            .top-bar-container { 
+                flex-direction: column; 
+                align-items: center; 
+                text-align: center; 
+            }
+            
+            .contact-info { 
+                margin-bottom: 10px; 
+            }
+            
+            .contact-info span { 
+                display: block; 
+                margin-right: 0; 
+                margin-bottom: 8px; 
+            }
+            
+            .contact-info span:last-child { 
+                margin-bottom: 0; 
+            }
+            
+            .social-icons-top a { 
+                margin: 0 10px; 
+            }
+            
+            .services-section {
+                 margin-top: 150px; 
+            }
+            body > .section:not(.services-section):first-of-type {
+                 padding-top: calc(150px + 20px); 
+                 margin-top:0;
+            }
+             .section:not(.services-section) {
+                  padding-top: 60px; 
+             }
+             .fixed-header ~ .section:not(.services-section){ /* Ensure sections after header have enough top space */
+                padding-top: 60px; 
+             }
+             /* Add padding to the first section after header if it's not services-section */
+            .fixed-header + .section:not(.services-section) {
+                 padding-top: calc(60px + 150px - 105px); /* section_padding + (stacked_header_approx_height - normal_header_height) */
+            }
+
+
+            main { 
+                 padding-top: 150px !important; /* General fallback for main tag if used directly */
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .section {
+                padding: 40px 0; 
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .contact-content-wrapper {
+                flex-direction: column;
+            }
+            .contact-form-address-area, .contact-map-area {
+                flex: none; 
+                width: 100%; 
+            }
+            .contact-map-area iframe {
+                height: 300px; 
+            }
+            
+            .footer-container { 
+                flex-direction: column; 
+                align-items: center; 
+                text-align: center; 
+            }
+            
+            .footer-column { 
+                min-width: 100%; 
+                margin: 0 0 40px; 
+                padding: 0 15px; 
+            }
+            
+            .footer-column h3 { 
+                margin-top: 0; 
+            }
+            
+            .footer-column .social-icons { 
+                justify-content: center; 
+            }
+            
+            .footer-column h3::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .service-card {
+                min-width: 100%;
+                max-width: 100%;
+            }
+            .contact-form-container h3, .address-details-container h3 {
+                font-size: 1.4rem;
+            }
+            .contact-form-container input[type="text"],
+            .contact-form-container input[type="email"],
+            .contact-form-container textarea,
+            .address-details-container p, 
+            .footer-column ul li, .footer-column ul li a { /* Ensure footer text is readable */
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="fixed-header">
+        <div class="top-bar">
+            <div class="top-bar-container">
+                <div class="contact-info">
+                    <span><i class="fas fa-envelope"></i> info@starlinkengineering.com</span>
+                    <span><i class="fas fa-phone-alt"></i> +8802222262208</span>
+                </div>
+                <div class="social-icons-top">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <nav class="main-nav">
+            <div class="nav-container">
+                <div class="logo">
+                    <a href="#"><img src="logo.png" alt="StarLink Logo"></a>
+                </div>
+                <div class="mobile-menu-icon">
+                     <i class="fas fa-bars"></i>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li class="has-submenu">
+                        <a href="#">About Us <i class="fas fa-angle-down submenu-arrow"></i></a>
+                        <ul class="submenu">
+                            <li><a href="#about-starlink-section">About Starlink</a></li>
+                            <li><a href="#sustainability-section">Sustainability & Responsibility</a></li>
+                            <li><a href="#vision-mission-policy-section">Vision, Mission & Policy</a></li>
+                            <li><a href="#competitive-edge-section">Our Competitive Edge</a></li>
+                            <li><a href="#management-section">Management</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-submenu">
+                        <a href="#">Services <i class="fas fa-angle-down submenu-arrow"></i></a>
+                        <ul class="submenu">
+                            <li><a href="#solar-epc-unit-section">Solar EPC</a></li>
+                            <li><a href="#telecom-engineering-section">Telecom Engineering Service</a></li>
+                            <li><a href="#">Operation & Maintenance (O&M)</a></li>
+                            <li><a href="#">CME and Interior Decoration</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-submenu">
+                        <a href="#">Products <i class="fas fa-angle-down submenu-arrow"></i></a>
+                        <ul class="submenu">
+                            <li><a href="#">Battery and ESS</a></li>
+                            <li><a href="#">Generator</a></li>
+                            <li><a href="#">Boiler</a></li>
+                            <li><a href="#">PV Module</a></li>
+                            <li><a href="#">Repeater</a></li>
+                            <li><a href="#">Telecom Antenna</a></li>
+                            <li><a href="#">Telecom and Solar Accessories</a></li>
+                            <li><a href="#">Distribution Box (MDB, ACDB, DCDB)</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-submenu">
+                        <a href="#">Projects <i class="fas fa-angle-down submenu-arrow"></i></a>
+                        <ul class="submenu">
+                            <li><a href="#">Completed Project</a></li>
+                            <li><a href="#">Ongoing Project</a></li>
+                            <li><a href="#">Upcoming Project</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">News & Blog</a></li>
+                    <li><a href="#contact-section">Contact us</a></li>
+                    <li><a href="https://www.starlinkbd.com/login" target="_blank">Login</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    
+    <section class="services-section" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Premium Services</h2>
+                <p>Discover our comprehensive engineering solutions designed to meet your specific needs and exceed expectations</p>
+            </div>
+            <div class="services-container">
+                <div class="service-card">
+                    <div class="service-image" style="background-image: url('Solar EPC.png');"></div>
+                    <div class="service-overlay">
+                        <h3 class="service-title">SOLAR EPC</h3>
+                        <p class="service-subtitle">Engineering, Procurement & Construction</p>
+                        <a href="#solar-epc-unit-section" class="service-btn">Explore More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-image" style="background-image: url('Engineering Services.png');"></div>
+                    <div class="service-overlay">
+                        <h3 class="service-title">TELECOM ENGINEERING</h3>
+                        <p class="service-subtitle">Cutting-edge communication solutions</p>
+                        <a href="#telecom-engineering-section" class="service-btn">Explore More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-image" style="background-image: url('Interior.png');"></div>
+                    <div class="service-overlay">
+                        <h3 class="service-title">CME & INTERIOR DECORATION</h3>
+                        <p class="service-subtitle">Transform your space with our expertise</p>
+                        <a href="#" class="service-btn">Explore More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-image" style="background-image: url('maintenance.png');"></div>
+                    <div class="service-overlay">
+                        <h3 class="service-title">OPERATION & MAINTENANCE</h3>
+                        <p class="service-subtitle">Ensuring peak performance of your assets</p>
+                        <a href="#" class="service-btn">Explore More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about-starlink-section" class="about-section section">
+        <div class="container">
+            <div class="content-block">
+                <div class="section-title">
+                    <h2>About Starlink Engineering</h2>
+                    <p>Strategic engineering solutions for a sustainable future</p>
+                </div>
+                
+                <h3>Our Story</h3>
+                <p>Established in 2008 by a group of passionate engineers, Starlink Engineering Ltd. has grown into a strategic partner for international organizations, telecom operators, corporate enterprises, and government agencies. We are committed to delivering high-quality, on-time, and cost-effective engineering solutions that simplify our clients' operations and add real value.</p>
+                
+                <p>Starlink is a trusted engineering service provider in Bangladesh, delivering comprehensive, end-to-end solutions across diverse sectors and strategically delivered through following specialized business units:</p>
+                
+                <div class="card-container">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4><i class="fas fa-solar-panel"></i> Solar EPC</h4>
+                        </div>
+                        <div class="card-body">
+                            <p>Engineering, Procurement & Construction of solar energy solutions for residential, commercial, and industrial applications.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h4><i class="fas fa-tower-cell"></i> Telecom Engineering</h4>
+                        </div>
+                        <div class="card-body">
+                            <p>Advanced communication infrastructure development and implementation for major telecom providers.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h4><i class="fas fa-paint-roller"></i> CME & Interior Decoration</h4>
+                        </div>
+                        <div class="card-body">
+                            <p>Civil, Mechanical & Electrical solutions along with interior design services for commercial spaces.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h4><i class="fas fa-tools"></i> Operation & Maintenance</h4>
+                        </div>
+                        <div class="card-body">
+                            <p>Comprehensive maintenance services ensuring optimal performance of infrastructure and equipment.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <p>Our core expertise spans the project lifecycle, encompassing project development, site surveys, feasibility studies, planning, engineering and design, procurement, construction and installation, commissioning and testing, operation and maintenance, optimization and tuning as well as supplying relevant products and accessories.</p>
+                
+                <p>Our strength lies in our skilled workforce of 150+ professionals, well-trained to manage complex engineering projects with precision, safety, and sustainability. Our integrated approach and diversified capabilities enable us to serve both the public and private sectors in telecommunications, civil infrastructure, and renewable energy.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="sustainability-section" class="section" style="background-color: #f8f9fa;">
+        <div class="container">
+            <div class="section-title"> 
+                <h2>Sustainability & Responsibility</h2>
+            </div>
+            <div class="content-block" style="padding-top: 0;"> 
+                <p>At Starlink, we take our social, environmental, and climate responsibilities seriously. We actively support Bangladesh's transition to clean energy by promoting and delivering solar power solutions for industrial, commercial, and remote applications. Our renewable energy initiatives are designed to reduce carbon emissions, enhance energy resilience, and contribute to national climate goals.</p>
+                
+                <p>As an environmentally conscious company, we integrate eco-friendly practices into every stage of our projects—from planning and design to execution and maintenance. We also invest in local community engagement, skills development, and inclusive employment, ensuring our growth is responsible and equitable.</p>
+                
+                <div class="highlight-box">
+                    <p>We believe that sustainable business practices are not just good for the planet, but essential for long-term business success and community development.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="vision-mission-policy-section" class="about-section section"> 
+        <div class="container">
+            <div class="content-block">
+                 <div class="section-title">
+                    <h2>Vision, Mission & Quality</h2>
+                </div>
+                <div class="card-container">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4><i class="fas fa-eye"></i> Vision</h4>
+                        </div>
+                        <div class="card-body">
+                            <p>"We will be the most reliable Engineering Servicing Company locally and globally"</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h4><i class="fas fa-bullseye"></i> Mission</h4>
+                        </div>
+                        <div class="card-body">
+                            <p>"Strategic Partnerships for long term Win-Win cooperation"</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h4><i class="fas fa-award"></i> Quality Policy</h4>
+                        </div>
+                        <div class="card-body">
+                            <p>"We are fully committed to the continuous improvement of our processes, products, and services. Starlink ensures all solutions are compliant with regulatory standards and delivered in a cost-effective, safe, and sustainable manner—earning customer trust through consistent quality and satisfaction."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="competitive-edge-section" class="section" style="background-color: #f0f9f0;">
+        <div class="container">
+            <div class="content-block">
+                <div class="section-title">
+                    <h2>Our Competitive Edge</h2>
+                    <p>We deliver reliable engineering services powered by our core 7 values "7 Cs"</p>
+                </div>
+                
+                <div class="benefits-grid">
+                    <div class="benefit-item">
+                        <i class="fas fa-users"></i>
+                        <div>
+                            <strong>Customer-Centric</strong>
+                            <p>We place our clients at the heart of every solution, delivering tailored engineering services that ensure long-term satisfaction, value, and trust.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-item">
+                        <i class="fas fa-hands-helping"></i>
+                        <div>
+                            <strong>Collaboration</strong>
+                            <p>We foster a culture of teamwork within our organization and with our partners, creating synergies that enhance innovation and streamline processes.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-item">
+                        <i class="fas fa-dollar-sign"></i>
+                        <div>
+                            <strong>Cost Efficiency</strong>
+                            <p>We optimize resources, minimize waste, and eliminate unnecessary expenditures to deliver high-quality, cost-effective solutions.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-item">
+                        <i class="fas fa-lightbulb"></i>
+                        <div>
+                            <strong>Creativity</strong>
+                            <p>Innovation drives us. We embrace innovative thinking to develop unique and effective solutions to complex engineering challenges.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-item">
+                        <i class="fas fa-link"></i>
+                        <div>
+                            <strong>Continuity</strong>
+                            <p>We build systems and relationships that last, providing consistent and reliable support throughout the entire project lifecycle and beyond.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-item">
+                        <i class="fas fa-tasks"></i>
+                        <div>
+                            <strong>Control</strong>
+                            <p>We maintain rigorous control over every aspect of our projects through structured planning, risk management, and quality assurance.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <div>
+                            <strong>Compliance</strong>
+                            <p>We uphold the highest standards of legal, ethical, and industry compliance, ensuring every project is executed safely and responsibly.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="management-section" class="about-section section">
+        <div class="container">
+            <div class="content-block">
+                <div class="section-title">
+                    <h2>Management Team</h2>
+                    <p>Meet the professionals driving Starlink Engineering forward</p>
+                </div>
+                
+                <div class="management-grid">
+                    <div class="profile-card">
+                        <div class="profile-header">
+                            <h3>Engr. Sheak Mofizur Rahman</h3>
+                            <div class="profile-position">Chairman & CEO</div>
+                        </div>
+                        <div class="profile-body">
+                            <p>B. Sc. Engineering in EEE (RUET), EMBA (NSU)</p>
+                            <p>A passionate entrepreneur with over 24 years of extensive experience in telecom network implementation and O&M as well as Engineering, Procurement and construction of Solar Power. Previously held several key roles at Banglalink and Huawei.</p>
+                            
+                            <div class="highlight-box">
+                                <p>His vision for Starlink extends beyond engineering excellence to encompass a strong commitment to environmental stewardship and sustainability.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-card">
+                        <div class="profile-header">
+                            <h3>Engr. Abu Sayed Md. Hero</h3>
+                            <div class="profile-position">Managing Director</div>
+                        </div>
+                        <div class="profile-body">
+                            <p>B.Sc. Engineering in ME (RUET)</p>
+                            <p>A visionary leader with over 22 years of dedicated experience in Telecom Project management with all telecom operators like Grameenphone, Banglalink, Robi, and vendors like Huawei, ZTE, Nokia, Ericsson as well as different government authorities.</p>
+                            
+                            <div class="highlight-box">
+                                <p>Mr. Abu Sayed believes in technical excellence, honesty and social responsibility, thus always promised to promote good technology, good business and good development.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-card">
+                        <div class="profile-header">
+                            <h3>Istar Jahan</h3>
+                            <div class="profile-position">Chief Financial Officer</div>
+                        </div>
+                        <div class="profile-body">
+                            <p>BBA, MBA (UK)</p>
+                            <p>An energetic entrepreneur with over 15 years' experience Ms. Jahan brings a wealth of international business acumen cultivated through BBA and MBA degrees earned in the United Kingdom.</p>
+                            
+                            <div class="highlight-box">
+                                <p>Her leadership is characterized by strategic vision, a collaborative approach, a focus on innovation, and a commitment to excellence.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-card">
+                        <div class="profile-header">
+                            <h3>Md. Nurul Hasan</h3>
+                            <div class="profile-position">Chief Technical Officer</div>
+                        </div>
+                        <div class="profile-body">
+                            <p>B. Sc. Engineering in ME (RUET), M. Sc. Engineering (USA)</p>
+                            <p>A passionate and results-oriented leader with over 23 years of extensive experience spanning telecom network implementation and O&M, as well as Automobile.</p>
+                            
+                            <div class="highlight-box">
+                                <p>Mr. Hasan is driven by a vision that extends beyond technical excellence. He champions a strong commitment to environmental stewardship and sustainability within Starlink.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-card">
+                        <div class="profile-header">
+                            <h3>Mohammad Akhsan</h3>
+                            <div class="profile-position">HOD - Business Development</div>
+                        </div>
+                        <div class="profile-body">
+                            <p>B. Sc. Engineering (EEE)</p>
+                            <p>Mr. Akhsan has been working in the field of Information and Telecommunication Technology (ICT) for more than 24 years and successfully developed his expertise in the field of Project Management as well as Business Development.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="solar-epc-unit-section" class="solar-epc-section section">
+        <div class="container">
+            <div class="content-block">
+                <div class="section-title">
+                    <h2>Solar EPC Services</h2>
+                    <p>Comprehensive solar energy solutions for a sustainable future</p>
+                </div>
+                
+                <h3>About Our Solar EPC Unit</h3>
+                <p>Starlink Engineering is a trusted name in engineering solutions, offering end-to-end Solar EPC (Engineering, Procurement & Construction) services for clients across various sectors. Our Solar EPC unit is committed to delivering high-performance, cost-effective, and sustainable solar energy solutions tailored to meet the unique needs of our clients.</p>
+                
+                <h3>Delivery Modes</h3>
+                <p>We offer flexible delivery and financing models to meet diverse customer requirements:</p>
+                
+                <div class="card-container">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4><i class="fas fa-building"></i> CAPEX Model</h4>
+                        </div>
+                        <div class="card-body">
+                            <p><strong>Capital Expenditure Model:</strong> Customers invest upfront and own the solar system. Starlink provides turnkey EPC services, ensuring smooth installation, grid integration, and after-sales support.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h4><i class="fas fa-file-contract"></i> OPEX Model</h4>
+                        </div>
+                        <div class="card-body">
+                            <p><strong>Operating Expenditure / PPA Model:</strong> Starlink invests in and operates the solar system on the client's premises under a long-term Power Purchase Agreement (PPA). Clients pay only for the electricity consumed—zero upfront investment, hassle-free maintenance.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="highlight-box">
+                    <p>Our comprehensive scope of work ensures that Starlink delivers high-quality, reliable, and efficient solar systems to our valued clients.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="telecom-engineering-section" class="telecom-section section">
+        <div class="container">
+            <div class="content-block">
+                <div class="section-title">
+                    <h2>Telecom Engineering Services</h2>
+                    <p>Advanced communication infrastructure solutions</p>
+                </div>
+                
+                <h3>Comprehensive Telecom Solutions</h3>
+                <p>Starlink Engineering provides end-to-end telecom engineering services for network operators, government agencies, and enterprises. Our expertise covers the entire project lifecycle from planning and design to implementation, optimization, and maintenance.</p>
+                
+                <div class="card-container">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4><i class="fas fa-tower-broadcast"></i> Network Planning & Design</h4>
+                        </div>
+                        <div class="card-body">
+                            <p>Comprehensive network planning including RF design, site selection, and capacity planning for optimal coverage and performance.</p>
+                            <ul>
+                                <li>RF Planning and Optimization</li>
+                                <li>Transmission Network Design</li>
+                                <li>Core Network Planning</li>
+                                <li>Backhaul Solutions</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h4><i class="fas fa-hard-hat"></i> Site Construction & Installation</h4>
+                        </div>
+                        <div class="card-body">
+                            <p>Turnkey solutions for telecom site construction including tower erection, equipment installation, and power systems implementation.</p>
+                            <ul>
+                                <li>Tower Construction and Installation</li>
+                                <li>Shelter and BTS Setup</li>
+                                <li>Power Systems and Backup Solutions</li>
+                                <li>Grounding and Lightning Protection</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h4><i class="fas fa-network-wired"></i> Network Implementation</h4>
+                        </div>
+                        <div class="card-body">
+                            <p>End-to-end implementation services for 2G, 3G, 4G, and 5G networks including equipment installation, configuration, and integration.</p>
+                            <ul>
+                                <li>Radio Access Network Deployment</li>
+                                <li>Microwave and Fiber Transmission</li>
+                                <li>Core Network Deployment</li>
+                                <li>Network Function Virtualization</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h4><i class="fas fa-tools"></i> Operations & Maintenance</h4>
+                        </div>
+                        <div class="card-body">
+                            <p>Comprehensive maintenance services to ensure network reliability and performance, including preventive and corrective maintenance.</p>
+                            <ul>
+                                <li>Preventive Maintenance Programs</li>
+                                <li>24/7 Fault Management</li>
+                                <li>Spare Parts Management</li>
+                                <li>Performance Monitoring and Reporting</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3>Our Telecom Expertise</h3>
+                <div class="benefits-grid">
+                    <div class="benefit-item">
+                        <i class="fas fa-check"></i>
+                        <div>
+                            <strong>Wireless Technologies</strong>
+                            <p>2G, 3G, 4G LTE, 5G NR, WiMAX, Microwave Transmission</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-item">
+                        <i class="fas fa-check"></i>
+                        <div>
+                            <strong>Transmission Networks</strong>
+                            <p>Fiber Optic, Microwave, Satellite, MPLS, IP/MPLS</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-item">
+                        <i class="fas fa-check"></i>
+                        <div>
+                            <strong>Core Networks</strong>
+                            <p>Circuit Switching, Packet Switching, IMS, VoLTE, EPC, 5GC</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-item">
+                        <i class="fas fa-check"></i>
+                        <div>
+                            <strong>Value-Added Services</strong>
+                            <p>SMSC, MMSC, VAS Platforms, IoT Solutions</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="highlight-box">
+                    <p>With over 15 years of experience in the telecom sector, Starlink Engineering has successfully delivered projects for major operators including Grameenphone, Robi, Banglalink, Teletalk, and international vendors like Huawei, ZTE, Ericsson, and Nokia.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact-section" class="section contact-us-custom-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Us</h2>
+                <p>Get in touch with us for inquiries or collaborations.</p>
+            </div>
+            <div class="contact-content-wrapper">
+                <div class="contact-form-address-area">
+                    <div class="contact-form-container">
+                        <h3>Send Us a Message</h3>
+                        <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST"> {/* Ensure YOUR_FORM_ID is replaced */}
+                            <div>
+                                <label for="contact-name">Name:</label>
+                                <input type="text" id="contact-name" name="name" required>
+                            </div>
+                            <div>
+                                <label for="contact-email">Your Email:</label>
+                                <input type="email" id="contact-email" name="email" required>
+                            </div>
+                            <div>
+                                <label for="contact-subject">Subject:</label>
+                                <input type="text" id="contact-subject" name="subject" required>
+                            </div>
+                            <div>
+                                <label for="contact-message">Message:</label>
+                                <textarea id="contact-message" name="message" rows="6" required></textarea>
+                            </div>
+                            <button type="submit">Send Message</button>
+                        </form>
+                    </div>
+
+                    <div class="address-details-container">
+                        <h3>Our Address</h3>
+                        <p>
+                            <strong>Starlink Engineering Ltd.</strong><br>
+                            GA-130/A Azhar Comfort Complex<br>
+                            Level – 12, Pragati Sarani, Middle Badda<br>
+                            Gulshan, Dhaka-1212
+                        </p>
+                        <p>
+                            <strong>Email:</strong> <a href="mailto:info@starlinkengineering.com">info@starlinkengineering.com</a><br>
+                            <strong>Website:</strong> <a href="http://www.starlinkengineering.com" target="_blank" rel="noopener noreferrer">www.starlinkengineering.com</a><br>
+                            <strong>F/P:</strong> +8802222262208
+                        </p>
+                    </div>
+                </div>
+
+                <div class="contact-map-area">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.026493575642!2d90.42289647353749!3d23.7820708875632!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c7968d6fcbf3%3A0x60041f436f9fb57!2sAzhar%20Comfort%20Complex!5e0!3m2!1sen!2sbd!4v1748842056412!5m2!1sen!2sbd" 
+                        width="600" 
+                        height="450" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h3>About Starlink</h3>
+                    <p>Starlink is a leading provider of telecommunications and solar energy solutions, delivering innovative and sustainable services to clients across various sectors.</p>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Our Services</h3>
+                    <ul>
+                        <li><a href="#solar-epc-unit-section" class="block-link"><i class="fas fa-chevron-right"></i> Solar EPC</a></li>
+                        <li><a href="#telecom-engineering-section" class="block-link"><i class="fas fa-chevron-right"></i> Telecom Engineering</a></li>
+                        <li><a href="#" class="block-link"><i class="fas fa-chevron-right"></i> Operation & Maintenance</a></li>
+                        <li><a href="#" class="block-link"><i class="fas fa-chevron-right"></i> CME & Interior Decoration</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#about-starlink-section" class="block-link"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                        <li><a href="#management-section" class="block-link"><i class="fas fa-chevron-right"></i> Management</a></li>
+                        <li><a href="#" class="block-link"><i class="fas fa-chevron-right"></i> Projects</a></li>
+                        <li><a href="#" class="block-link"><i class="fas fa-chevron-right"></i> News & Blog</a></li>
+                        <li><a href="#contact-section" class="block-link"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div> Starlink Engineering Ltd.<br>
+                                GA-130/A Azhar Comfort Complex<br>
+                                Level – 12, Pragati Sarani, Middle Badda<br>
+                                Gulshan, Dhaka-1212
+                            </div>
+                        </li>
+                        <li><i class="fas fa-envelope"></i><a href="mailto:info@starlinkengineering.com">info@starlinkengineering.com</a></li>
+                        <li><i class="fas fa-globe"></i><a href="http://www.starlinkengineering.com" target="_blank" rel="noopener noreferrer">www.starlinkengineering.com</a></li>
+                        <li><i class="fas fa-phone-alt"></i><a href="tel:+8802222262208">+8802222262208</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="container">
+                <p>© 2025 Starlink Engineering Ltd. All Rights Reserved. | Designed with <i class="fas fa-heart" style="color: #ff4d4d;"></i> for a Sustainable Future</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuIcon = document.querySelector('.mobile-menu-icon');
+            const navLinks = document.querySelector('.nav-links');
+
+            if (mobileMenuIcon && navLinks) {
+                mobileMenuIcon.addEventListener('click', function() {
+                    navLinks.classList.toggle('active');
+                });
+            }
+
+            const submenuParentLinks = document.querySelectorAll('.nav-links li.has-submenu > a');
+            submenuParentLinks.forEach(link => {
+                link.addEventListener('click', function(event) {
+                    if (window.innerWidth <= 992 && navLinks.classList.contains('active')) {
+                        const parentLi = this.parentElement;
+                        const submenu = parentLi.querySelector('.submenu');
+                        if (submenu) {
+                            let href = this.getAttribute('href');
+                            if (href === "#" || !href || (href && !href.startsWith("#")) ) {
+                               event.preventDefault(); 
+                            }
+                            submenu.classList.toggle('submenu-active');
+                            const arrow = this.querySelector('.submenu-arrow');
+                            if (arrow) { arrow.classList.toggle('rotated'); }
+                        }
+                    }
+                });
+            });
+
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const hrefAttribute = this.getAttribute('href');
+                    if (hrefAttribute && hrefAttribute.length > 1 && hrefAttribute !== "#") {
+                        const targetElement = document.querySelector(hrefAttribute);
+                        if (targetElement) {
+                            e.preventDefault();
+                            const headerOffset = document.querySelector('.fixed-header').offsetHeight || 100;
+                            const elementPosition = targetElement.getBoundingClientRect().top;
+                            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                            
+                            window.scrollTo({
+                                 top: offsetPosition,
+                                 behavior: "smooth"
+                            });
+
+                            if (navLinks && navLinks.classList.contains('active')) {
+                                navLinks.classList.remove('active');
+                                document.querySelectorAll('.nav-links .submenu.submenu-active').forEach(sm => {
+                                    sm.classList.remove('submenu-active');
+                                });
+                                document.querySelectorAll('.nav-links li.has-submenu > a .submenu-arrow.rotated').forEach(ar => {
+                                    ar.classList.remove('rotated');
+                                });
+                            }
+                        }
+                    }
+                });
+            });
+
+            const serviceCards = document.querySelectorAll('.service-card');
+            if (serviceCards.length > 0) { 
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.style.opacity = 1;
+                            entry.target.style.transform = 'translateY(0)';
+                        }
+                    });
+                }, { threshold: 0.1 });
+
+                serviceCards.forEach(card => {
+                    card.style.opacity = 0;
+                    card.style.transform = 'translateY(50px)';
+                    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    observer.observe(card);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
